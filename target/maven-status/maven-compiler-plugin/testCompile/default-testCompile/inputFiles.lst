@@ -1,1 +1,3 @@
-/Users/contymichell/mi-proyecto-ci/mi-proyecto-ci/src/test/java/com/ejemplo/CalculadoraTest.java
+/Users/contymichell/mi-proyecto-ci/src/test/java/com/ejemplo/bdd/steps/LoginSteps.java
+/Users/contymichell/mi-proyecto-ci/src/test/java/com/ejemplo/CalculadoraTest.java
+/Users/contymichell/mi-proyecto-ci/src/test/java/com/ejemplo/bdd/runner/CucumberRunnerTest.java

@@ -1,4 +1,4 @@
-name: Java CI
+name: Java CI con Cucumber y GitHub Pages
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Compilar, ejecutar tests y generar reporte JaCoCo
+      - name: Compilar, ejecutar tests y generar reporte JaCoCo + Cucumber
         run: mvn clean test jacoco:report
       
       - name: Subir reporte JaCoCo como artifact
@@ -28,4 +28,22 @@ jobs:
         with:
           name: jacoco-report
           path: target/site/jacoco/
+
+      - name: Subir reporte Cucumber como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-report
+          path: target/cucumber-report.html
+        if-no-files-found: error
+
+      - name: Copiar reporte Cucumber a carpeta "public"
+        run: |
+          mkdir -p public
+          cp target/cucumber-report.html public/index.html
+
+      - name: Deploy a GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
 
