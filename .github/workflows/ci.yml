@@ -34,7 +34,7 @@ jobs:
         with:
           name: cucumber-report
           path: target/cucumber-report.html
-        if-no-files-found: error
+          if-no-files-found: error
 
       - name: Preparar carpeta para GitHub Pages
         run: |
