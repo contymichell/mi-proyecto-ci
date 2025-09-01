@@ -20,6 +20,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Compilar y ejecutar tests
-        run: mvn clean test
+      - name: Compilar, ejecutar tests y generar reporte JaCoCo
+        run: mvn clean test jacoco:report
+      
+      - name: Subir reporte JaCoCo como artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
 
