@@ -1,4 +1,4 @@
-name: Java CI con Cucumber y GitHub Pages
+name: Java CI con JUnit + Cucumber + JaCoCo + Pages
 
 on:
   push:
@@ -36,9 +36,11 @@ jobs:
           path: target/cucumber-report.html
         if-no-files-found: error
 
-      - name: Copiar reporte Cucumber a carpeta "public"
+      - name: Preparar carpeta para GitHub Pages
         run: |
-          mkdir -p public
+          mkdir -p public/jacoco
+          mkdir -p public/cucumber
+          cp -r target/site/jacoco/* public/jacoco/
           cp target/cucumber-report.html public/index.html
 
       - name: Deploy a GitHub Pages
